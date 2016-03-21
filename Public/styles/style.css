@@ -41,4 +41,7 @@
 #tips img{
 	margin-top: 2rem;
 }
-
+#photoUploadBtn{
+	padding: 0;
+	border: 0;
+}

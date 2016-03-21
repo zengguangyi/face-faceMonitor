@@ -35,7 +35,7 @@
 									<div class="item-title label">Person <span class="addfaceMsg"></span></div>
 									<div class="item-input">
 										<!-- person_name表单输入 -->
-										<input type="text" name="name" id="myPersonNameInput" />
+										<input type="text" name="person_name" id="myPersonNameInput" />
 									</div>
 								</div>
 							</div>
@@ -47,7 +47,7 @@
 									<div class="item-title label">选择图片</div>
 									<div class="item-input">
 										<!-- face表单输入 -->
-										<input type="file" name="photo" />	
+										<input type="file" name="face" class="button button-fill button-big" id="photoUploadBtn" />	
 									</div>
 								</div>
 							</div>

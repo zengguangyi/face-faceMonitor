@@ -11,10 +11,11 @@ function get_person_list(){
 		for(var i=0;i<data.person.length;i++){
 			personName[i] = data.person[i].person_name; //获取person中的person_name
 			/*添加信息卡片*/
-			var html = '<div class="card"><div class="card-content"><div class="content-block-title" id="myMaster">主人：<span class="person_name">Make</span></div><div class="list-block"><ul><li class="item-content"><div class="item-media"><i class="icon icon-f7"></i></div><div class="item-inner"><div class="item-title"><p>人脸素材</p></div><div class="item-after">12</div></div></li><li class="item-content"><div class="item-media"><i class="icon icon-f7"></i></div><div class="item-inner"><a href="#" class="myCenterTitle">查看</a></div></li></ul></div></div></div>';
+			var html = '<div class="card"><div class="card-content"><div class="content-block-title" id="myMaster">主人：<span class="person_name">Make</span></div><div class="list-block"><ul><li class="item-content"><div class="item-media"><i class="icon icon-f7"></i></div><div class="item-inner"></div></li><li class="item-content"><div class="item-media"><i class="icon icon-f7"></i></div><div class="item-inner"><a href="#" class="myCenterTitle">查看</a></div></li></ul></div></div></div>';
 			$("#js-card-msg").append(html);
 			/*设置卡片人物信息*/
-			$("span.person_name:eq("+i+")").attr('id', personName[i]).text(personName[i]);
+			$("span.person_name:eq("+i+")").text(personName[i]);
+			$("div.card:eq("+i+")").attr('id', personName[i]);
 			/*添加侧栏face素材的下拉person*/
 			// var html2 = '<p><a href="#" class="button">ab</a></p>';
 			// $("#mySidebarHid").append(html2);
@@ -49,6 +50,12 @@ function check_addface_person_name(){
 		});
 	});
 }
+/*添加face的等待loading动画*/
+function addface_loading(){
+	$("#addface_sub_btn").click(function() {
+		$("#addface_load").show();
+	});
+} 
 
 
 /*在face++后台添加新的person*/
@@ -100,9 +107,18 @@ function mySidebarHidden(){
 }
 
 
+
+
+
 $(function(){
 	get_person_list();
+	
+
 	// mySidebarHidden();
 	add_person();
 	check_addface_person_name();
+	addface_loading();
 })
+// window.onload = function(){
+// 	index_ajax_person_name();
+// }

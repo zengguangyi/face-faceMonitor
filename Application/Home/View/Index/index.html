@@ -74,5 +74,14 @@
 	</div>
 
 	<script type="text/javascript" src="__PUBLIC__/scripts/indexjs.js"></script>
+	<script type="text/javascript">
+		/*index中把person_name传给php*/
+		window.onload = function(){
+			$(document).on("click",".card",function() {
+				location.href = "{:U('Data/deleteface')}?person_name="+$(this).attr('id');
+			});
+		}
+
+	</script>
 </body>
 </html>

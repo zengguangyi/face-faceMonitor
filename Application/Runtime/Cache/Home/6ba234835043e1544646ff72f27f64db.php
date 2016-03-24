@@ -47,7 +47,8 @@
 									<div class="item-title label">选择图片</div>
 									<div class="item-input">
 										<!-- face表单输入 -->
-										<input type="file" name="face" class="button button-fill button-big" id="photoUploadBtn" />	
+										<label for="photoUploadBtn" class="button button-fill button-big">上传图片</label>
+										<input type="file" name="face" id="photoUploadBtn" />	
 									</div>
 								</div>
 							</div>
@@ -56,14 +57,14 @@
 				</div>
 				<div class="content-block">
 					<div class="row">
-						<div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+						<div class="col-50"><input id="reset_btn" type="reset" value="取消" class="button button-big button-fill button-danger"></div>
 						<!-- 提交表单 -->
-						<div class="col-50"><input type="submit" value="提交" class="button button-big button-fill button-success" ></div>
+						<div class="col-50"><input id="addface_sub_btn" type="submit" value="提交" class="button button-big button-fill button-success" ></div>
 					</div>
 				</div>
 				
-			</form>
-			
+			</form>		
+			<img id="addface_load" src="/faceMonitor/1/Public/images/ajax-loader3.gif">		
 			
 		</div>
 		<nav class="bar bar-tab" id="myFoot">									

@@ -54,9 +54,9 @@
 			</div>
 
 		</div>
-		<nav class="bar bar-tab" id="myFoot">									
-			<h1 class='title'>底部</h1>			
-		</nav>	
+		<!-- <nav class="bar bar-tab" id="myFoot">									
+			<h1 class='title'>底部</h1>		
+		</nav>	 -->
 	</div>
 
 	<div class="panel-overlay"></div>

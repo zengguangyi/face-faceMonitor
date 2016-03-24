@@ -69,8 +69,8 @@ class DataController extends Controller {
     		$face['createtime'] = substr($photo_name, -25,21);
 
     		/*1.请求face++进行人脸检测，获取face_id*/
-    		$api_detection_detect = $api_url.'/detection/detect?api_key='.$api_key.'&api_secret='.$api_secret."&url=http://g.hiphotos.baidu.com/image/pic/item/c8ea15ce36d3d539d090d5353f87e950342ab093.jpg&attribute=glass,pose,gender,age,race,smiling";//测试地址
-    		// $api_detection_detect = $api_url.'/detection/detect?api_key='.$api_key.'&api_secret='.$api_secret."&url=".$face['faceurl'].'&attribute=glass,pose,gender,age,race,smiling';
+    		// $api_detection_detect = $api_url.'/detection/detect?api_key='.$api_key.'&api_secret='.$api_secret."&url=http://g.hiphotos.baidu.com/image/pic/item/c8ea15ce36d3d539d090d5353f87e950342ab093.jpg&attribute=glass,pose,gender,age,race,smiling";//测试地址
+    		$api_detection_detect = $api_url.'/detection/detect?api_key='.$api_key.'&api_secret='.$api_secret."&url=".$face['faceurl'].'&attribute=glass,pose,gender,age,race,smiling';
     		$face_list = file_get_contents($api_detection_detect);
 			$arr_face_json = json_decode($face_list,true); //解析json(带bom)，数组形式
 			$face['faceid'] = $arr_face_json['face'][0]['face_id'];
@@ -159,10 +159,10 @@ class DataController extends Controller {
 
 			/*删除本地图片*/
 			if(file_exists('./Public/faceDB/'.$data['personname'].'/'.$data['imgname']))//正常环境下删除文件
-            unlink('./Public/faceDB/'.$data['personname'].'/'.$data['imgname']);
+			unlink('./Public/faceDB/'.$data['personname'].'/'.$data['imgname']);
 
-            /*重新训练faces*/
-            $api_train_verify = $api_url.'/train/verify?api_secret='.$api_secret.'&api_key='.$api_key.'&person_name='.$data['personname'];
+			/*重新训练faces*/
+			$api_train_verify = $api_url.'/train/verify?api_secret='.$api_secret.'&api_key='.$api_key.'&person_name='.$data['personname'];
 			$train_list = file_get_contents($api_train_verify);
 			
 			/*返回json给前端*/
@@ -171,7 +171,8 @@ class DataController extends Controller {
 		}
 	}
 
-	/*删除person*/public function deletedb_person(){
+	/*删除person*/
+	public function deletedb_person(){
 		if(IS_POST){
 			$api_key = 'd67c3c855e947e43f055ebb16bdec8fb';
 			$api_secret = 'DNKcR5C_yXHGR4_Si73J66RLc-XhIOT_';
@@ -186,11 +187,30 @@ class DataController extends Controller {
 			$api_person_delete = $api_url."/person/delete?api_secret=".$api_secret."&api_key=".$api_key."&person_name=".$data['personname'];
 			$person_delete = file_get_contents($api_person_delete);
 
-			/*删除本地文件夹*/
-			if(is_dir('./Public/faceDB/'.$data['personname'])){
-				rmdir('./Public/faceDB/'.$data['personname']);
+			/*删除本地文件夹,连同person中的face*/
+			$dirName = './Public/faceDB/'.$data['personname'];
+			if ( $handle = opendir( "$dirName" ) ) {  
+				while ( false !== ( $item = readdir( $handle ) ) ) {  
+					if ( $item != "." && $item != ".." ) {  
+						if ( is_dir( "$dirName/$item" ) ) {  
+							delDirAndFile( "$dirName/$item" );  
+						} else {  
+							if( unlink( "$dirName/$item" ) ){
+								// echo "成功删除文件： $dirName/$item<br />\n";
+							}
+						}  
+					}  
+				}  
+				closedir( $handle );  
+				if( rmdir( $dirName ) ){
+					// echo "成功删除目录： $dirName<br />\n";
+				}
 			}
 
+			/*返回信息给前端*/
+			$return_json = 1;
+			$this->ajaxReturn($return_json);
+			// $this->success('你真狠心删除o.0','Index/index',2);
 
 		}
 	}

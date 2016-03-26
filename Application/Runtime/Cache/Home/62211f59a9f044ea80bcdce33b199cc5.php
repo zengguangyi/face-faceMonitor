@@ -50,9 +50,9 @@
 			</div>
 
 		</div>
-		<nav class="bar bar-tab" id="myFoot">									
+		<!-- <nav class="bar bar-tab" id="myFoot">									
 			<h1 class='title'>底部</h1>			
-		</nav>	
+		</nav> -->	
 	</div>
 
 	<div class="panel-overlay"></div>
@@ -65,6 +65,7 @@
 
 			</div>
 			<p class="mySidebarTitle"><a href="#" class="button button-fill"><span class="icon icon-friends" id="mySidebarIcon2"></span>添加信任成员</a></p>
+			<p class="mySidebarTitle"><a href="<?php echo U('Piimage/displayimg');?>" class="button button-fill"><span class="icon icon-download" id="mySidebarIcon2"></span>查看实时信息</a></p>
 			<p class="mySidebarTitle"><a href="#" class="close-panel button button-big button-round">关闭</a></p>
 		</div>
 	</div>

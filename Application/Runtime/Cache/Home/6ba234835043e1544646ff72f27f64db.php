@@ -5,8 +5,6 @@
 	<title>人脸监控系统|后台管理</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
 
-	<!-- <link rel="stylesheet" type="text/css" href="/faceMonitor/1/Public/styles/wx_style.css"> -->
-
 	<script type="text/javascript" src="/faceMonitor/1/Public/libs/jquery-1.12.0.min.js"></script>
 
 	<link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
@@ -67,9 +65,9 @@
 			<img id="addface_load" src="/faceMonitor/1/Public/images/ajax-loader3.gif">		
 			
 		</div>
-		<nav class="bar bar-tab" id="myFoot">									
+		<!-- <nav class="bar bar-tab" id="myFoot">									
 			<h1 class='title'>底部</h1>			
-		</nav>	
+		</nav>	 -->
 	</div>
 
 	<div class="panel-overlay"></div>
@@ -82,6 +80,7 @@
 				
 			</div>
 			<p class="mySidebarTitle"><a href="<?php echo U('Data/addperson');?>" class="button button-fill"><span class="icon icon-friends" id="mySidebarIcon2"></span>添加信任成员</a></p>
+			<p class="mySidebarTitle"><a href="<?php echo U('Piimage/displayimg');?>" class="button button-fill"><span class="icon icon-download" id="mySidebarIcon2"></span>查看实时信息</a></p>
 			<p class="mySidebarTitle"><a href="#" class="close-panel button button-big button-round">关闭</a></p>
 		</div>
 	</div>
